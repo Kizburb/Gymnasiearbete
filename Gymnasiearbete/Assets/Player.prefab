@@ -110,7 +110,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &7355282281695291065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,8 +124,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRB: {fileID: 0}
+  scoreText: {fileID: 0}
   turnForce: 10
   forwardForce: 350
+  score: 0
 --- !u!114 &7355282281695291066
 MonoBehaviour:
   m_ObjectHideFlags: 0
