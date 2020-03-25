@@ -32,6 +32,19 @@ public class PlayerScript : MonoBehaviour
         // Sätter scoreTexten till antalet poäng spelaren har.
         scoreText.text = score.ToString();
 
+        // Anropa funktion som hanterar rörelser.
+        handleMovement();
+
+        // Om spelarens position på Y-ledet är mindre än -3 och inte har nått målet, starta om scenen eftersom detta betyder att spelaren ramlat av banan.
+        if (playerRB.position.y < -3 && playerRB.position.z < 150) 
+        {
+            resetScene();
+        }
+    }
+
+    // Hanterar spelarens rörelse beroende på olika knapptryck.
+    void handleMovement()
+    {
         // Ger spelaren en kraft framåt hela tiden oavsett om spelaren trycker på någon knapp.
         playerRB.AddForce(0, 0, forwardForce * Time.deltaTime); // Time.deltaTime är tiden mellan nuvarande frame och förra framen.
 
@@ -44,11 +57,9 @@ public class PlayerScript : MonoBehaviour
         {
             playerRB.AddForce(turnForce * Time.deltaTime, 0, 0); // Lägger till en positiv kraft på x-ledet vilket då är åt höger.
         }
-
-        // Om spelarens position på Y-ledet är mindre än -3 och inte har nått målet, starta om scenen eftersom detta betyder att spelaren ramlat av banan.
-        if (playerRB.position.y < -3 && playerRB.position.z < 150) 
+        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftShift)) // S = Sakta ner || Pil ner = Sakta ner || Vänstra shift knappen = Sakta ner
         {
-            resetScene();
+            playerRB.AddForce(0, 0, -forwardForce * Time.deltaTime); // Lägger till en negativ kraft på Z-ledet för att sakta ner spelaren.
         }
     }
 
